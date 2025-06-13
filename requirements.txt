@@ -9,3 +9,4 @@ kiteconnect
 click
 kiteconnect
 openpyxl
+sqlmodel
