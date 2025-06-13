@@ -1,0 +1,3 @@
+[submodule "otpauth-migration-decoder"]
+	path = otpauth-migration-decoder
+	url = https://github.com/digitalduke/otpauth-migration-decoder
