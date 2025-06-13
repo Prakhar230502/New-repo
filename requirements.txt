@@ -1,0 +1,11 @@
+pandas
+pillow
+pyzbar
+pyotp
+selenium
+urllib3
+protobuf
+kiteconnect
+click
+kiteconnect
+openpyxl
