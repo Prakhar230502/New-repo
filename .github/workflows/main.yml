@@ -1,0 +1,33 @@
+name: Daily Trading Run (Mon–Fri at 9.15 AM IST)
+
+on:
+  schedule:
+    # 03:30 UTC = 9:00 AM IST
+    - cron: '45 21 * * 1-5'  # Run at 3:30 UTC, Monday–Friday
+  workflow_dispatch:  # Allows manual run from GitHub UI
+  push:
+    branches:
+      - main
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.13'
+
+      - name: Install zbar library (required by pyzbar)
+        run: sudo apt-get update && sudo apt-get install -y libzbar0
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run Multi Threading
+        run: python multi_threading.py
