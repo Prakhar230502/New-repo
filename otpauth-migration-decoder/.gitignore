@@ -1,0 +1,7 @@
+decoder.build/
+decoder.dist/
+.direnv/
+.fleet/
+.envrc
+*.pyc
+.gitconfig
