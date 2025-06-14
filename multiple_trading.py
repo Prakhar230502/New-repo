@@ -106,20 +106,20 @@ def multiple_trading(kite, user_id: str, symbols: dict, exchange: str, percent: 
                         excel_functions.upsert_symbol_row(user_id, symbol, number_of_trades[symbol], base_price[symbol])
                 # If current price is less than the base price by 3% and number of trades are less than 5, place a buy order
                 elif current_price <= base_price[symbol]*(100-percent)/100 and number_of_trades[symbol] < 5 and buy_trades < 50 and kite_functions.get_nifty_day_change(kite) > -4: 
-                    base_price[symbol] = base_price[symbol]*(100-percent)/100
                     print(f"{user_id}: {time_now}: Target buy price {current_price} for {symbol} reached. Placing buy order... Current number of trades = {number_of_trades[symbol]+1}")
                     buy_order = kite_functions.Order(symbol, exchange, symbols[symbol], current_price, "BUY") 
                     order_id = kite_functions.place_order(kite, buy_order)
                     if order_id is not None:
+                        base_price[symbol] = base_price[symbol]*(100-percent)/100
                         number_of_trades[symbol] += 1
                         excel_functions.upsert_symbol_row(user_id, symbol, number_of_trades[symbol], base_price[symbol])
                 # If current price is greater than the base price by 3% and number of trades are greater than 1, place a sell order
                 elif current_price >= base_price[symbol]*100/(100-percent) and number_of_trades[symbol] > 1:
-                    base_price[symbol] = base_price[symbol]*100/(100-percent)
                     print(f"{user_id}: {time_now}: Target sell price {current_price} for {symbol} reached. Placing sell order... Current number of trades = {number_of_trades[symbol]-1}")
                     sell_order = kite_functions.Order(symbol, exchange, symbols[symbol], current_price, "SELL") 
                     order_id = kite_functions.place_order(kite, sell_order)
                     if order_id is not None:
+                        base_price[symbol] = base_price[symbol]*100/(100-percent)
                         number_of_trades[symbol] =  number_of_trades[symbol] - 1
                         excel_functions.upsert_symbol_row(user_id, symbol, number_of_trades[symbol] - 1, base_price[symbol]*100/(100-percent))
                 # If current price is greater than the base price by 3% and number of trades are equal to 1, update the base price

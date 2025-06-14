@@ -223,11 +223,11 @@ def set_access_token(user_id: str, token):
     
 if __name__ == "__main__":
     # print(get_lots_for_symbol('nbcc'))
-    print(get_lots_for_symbol("UZ4820", 'WEL'))
+    print(get_last_price_for_symbol("PQU213", 'CGCL'))
+    print(get_lots_for_symbol('PQU213', 'CGCL'))
     # upsert_symbol_row('MSUMI', 15, 130.00)
     # print(read_symbols())
     # upsert_symbol_row('ab', 20, 125.00)
     # create_excel_sheet()
     # append_trading_orders(6, 3, 3)
     # print(get_access_token())
-    # print(get_last_price_for_symbol('a'))
