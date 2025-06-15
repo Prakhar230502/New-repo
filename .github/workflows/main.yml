@@ -1,9 +1,9 @@
 name: Daily Trading Run (Mon–Fri at 9.15 AM IST)
 
 on:
-  schedule:
-    # 03:30 UTC = 9:00 AM IST
-    - cron: '45 21 * * 1-5'  # Run at 3:30 UTC, Monday–Friday
+  # schedule:
+  #   # 03:30 UTC = 9:00 AM IST
+  #   - cron: '45 21 * * 1-5'  # Run at 3:30 UTC, Monday–Friday
   workflow_dispatch:  # Allows manual run from GitHub UI
   push:
     branches:
